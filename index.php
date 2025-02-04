@@ -67,10 +67,10 @@ if (!isset($_SESSION['user'])) {
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Penjualan
                             </a>
-                            <a class="nav-link" href="?page=daftar_detail_penjualan">
+                            <!-- <a class="nav-link" href="?page=daftar_detail_penjualan">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Detail Penjualan
-                            </a>
+                            </a> -->
                             </a>
                             <a class="nav-link" href="logout.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>

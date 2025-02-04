@@ -1,30 +1,31 @@
 <?php
-$id_penjualan=$_POST['id_penjualan'];
-$tgl_penjualan=$_POST['tanggal_penjualan'];
-$total_harga=$_POST['total_harga'];
-$id_pelanggan=$_POST['id_pelanggan'];
-
-
+session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include "koneksi.php";
-$tambah_penjualan=mysqli_query ($koneksi, "INSERT INTO `penjualan`(`id_penjualan`, `tanggal_penjualan`, `total_harga`, `id_pelanggan`) VALUES ('$id_penjualan','$tgl_penjualan','$total_harga','$id_pelanggan')");
 
-if(!$tambah_penjualan){
-?>
-  <script language="javascript">
-    alert("Data Pelanggan Gagal di Simpan..!!");
-    setTimeout('self.location.href="/daftar_penjualan.php"', 10);
+$id = $_POST['id_penjualan'];
+$tgl = $_POST['tgl_penjualan'];
+$harga = $_POST['total_harga'];
+$idpelanggan = $_POST['id_pelanggan'];
 
-    </script>
-<?php
+if (isset($_POST['tambah'])) {
+    // Memasukkan data ke tabel penjualan
+    $sql_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan (tanggal_penjualan, total_harga, id_pelanggan, bayar, sisa_bayar) 
+    VALUES ('$tgl', '$harga', '$idpelanggan', '0', '0')");
 }
-else{
-    ?>
-    <script language="javascript">
-    alert("Data Pelanggan Berhasil disimpan..!!");
-    </script>
-    <?php
-}
-        print ("<html><head><meta http-equiv='refresh' content='0; url=index.php'></head><body></body></html>");
-   
+
+// Mengambil data penjualan dan pelanggan dengan INNER JOIN
+$sql_jual = mysqli_query($koneksi, 
+    "SELECT penjualan.*, pelanggan.id_pelanggan, pelanggan.nama_pelanggan 
+    FROM penjualan 
+    INNER JOIN pelanggan ON penjualan.id_pelanggan = pelanggan.id_pelanggan
+    WHERE penjualan.id_penjualan = '$id'"
+);
+
+$ShowPayment = mysqli_fetch_array($sql_jual);
+$_SESSION['user'] = $ShowPayment;
+
+include "detail_penjualan.php";
 ?>

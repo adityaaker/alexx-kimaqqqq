@@ -1,141 +1,53 @@
 <?php
-include "koneksi.php";
 
-// Ambil ID penjualan terakhir
-$data = mysqli_fetch_row(mysqli_query($koneksi, "SELECT MAX(id_penjualan) FROM penjualan"));
-$no = $data[0] + 1;
-
-// Ambil daftar pelanggan
-$pelanggan = mysqli_query($koneksi, "SELECT id_pelanggan, nama_pelanggan FROM pelanggan");
-
-// Ambil daftar produk
-$produk = mysqli_query($koneksi, "SELECT id_produk, nama_produk, harga FROM produk");
 ?>
-<!DOCTYPE html>
-<html lang="id">
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Data Penjualan</title>
+    <title>Form Input Data Penjualan</title>
+    <link rel="stylesheet" type="text/css" href="global.main.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 400px;
-        }
-        h2 {
-            text-align: center;
-            color: #0082e6;
-        }
-        table {
-            width: 100%;
-        }
-        td {
-            padding: 8px;
-        }
-        select, input[type="text"], input[type="date"], input[type="number"], input[type="submit"] {
-            width: 100%;
-            padding: 8px;
-            margin: 4px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        input[type="submit"] {
-            background-color: #0082e6;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #005bb5;
-        }
+        /* ISI STYLE DISINI */
+
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h2>Input Data Penjualan</h2>
-        <form name="form_penjualan" method="post" action="exe_penjualan.php">
-            <table>
-                <tr>
-                    <td>ID Penjualan</td>
-                    <td><input type="text" name="id_penjualan" value="<?php echo $no; ?>" readonly></td>
-                </tr>
-                <tr>
-                    <td>Tanggal Penjualan</td>
-                    <td><input type="date" name="tanggal_penjualan" required></td>
-                </tr>
-                <tr>
-    <td>Nama Pelanggan</td>
-    <td>
-        <select name="id_pelanggan" required>
-            <option value="">Pilih Pelanggan</option>
-            <?php while ($p = mysqli_fetch_assoc($pelanggan)) { ?>
-                <option value="<?= $p['id_pelanggan']; ?>"><?= $p['nama_pelanggan']; ?></option>
-            <?php } ?>
-        </select>
-    </td>
-</tr>
+    <?php
+    include "./koneksi.php";
+    $data = mysqli_fetch_row(mysqli_query($koneksi, "SELECT MAX(id_penjualan) FROM penjualan"));
+    $no = $data[0] + 1;
+    ?>
+    <form method="post" action="exe_penjualan.php" class="container">
+        <h1>INPUT DATA TRANSAKSI PENJUALAN</h1>
+        <label for="id_penjualan">ID Penjualan</label>
+        <input type="text" name="id_penjualan" value="<?php echo $no; ?>" readonly>
 
-                <tr>
-                    <td>Produk</td>
-                    <td>
-                        <select name="id_produk" id="id_produk" required onchange="updateHarga()">
-                            <option value="">Pilih Produk</option>
-                            <?php while ($p = mysqli_fetch_assoc($produk)) { ?>
-                                <option value="<?= $p['id_produk']; ?>" data-harga="<?= $p['harga']; ?>">
-                                    <?= $p['nama_produk']; ?> - Rp<?= number_format($p['harga'], 0, ',', '.'); ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jumlah</td>
-                    <td><input type="number" name="jumlah" id="jumlah" min="1" value="1" required oninput="hitungTotal()"></td>
-                </tr>
-                <tr>
-                    <td>Total Harga</td>
-                    <td><input type="text" name="total_harga" id="total_harga" readonly></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <input type="submit" name="simpan" value="Simpan">
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+        <label for="tgl_penjualan">Tanggal Penjualan</label>
+        <input type="date" name="tgl_penjualan" value="<?php echo date('Y-m-d'); ?>">
 
-    <script>
-        function updateHarga() {
-            var produk = document.getElementById("id_produk");
-            var harga = produk.options[produk.selectedIndex].getAttribute("data-harga");
-            document.getElementById("total_harga").value = harga;
-            hitungTotal();
-        }
+        <label for="total_harga">Total Harga</label>
+        <input type="number" name="total_harga" value="0" required>
 
-        function hitungTotal() {
-            var produk = document.getElementById("id_produk");
-            var harga = produk.options[produk.selectedIndex].getAttribute("data-harga");
-            var jumlah = document.getElementById("jumlah").value;
-            if (harga && jumlah) {
-                document.getElementById("total_harga").value = harga * jumlah;
+
+        <label for="id_pelanggan">ID Pelanggan</label>
+        <select name="id_pelanggan">
+            <option value='not_pelanggan'>Pilih Data Pelanggan</option>
+            <?php
+            $sql = "SELECT * FROM pelanggan ORDER BY id_pelanggan";
+            $array = mysqli_query($koneksi, $sql);
+            while ($hasil = mysqli_fetch_array($array)) {
+                echo "<option value='{$hasil['id_pelanggan']}'>{$hasil['id_pelanggan']} ~ {$hasil['nama_pelanggan']}</option>";
             }
-        }
-    </script>
+            ?>
+        </select>
+
+        <div class="button-group">
+            <button type="submit" name="tambah" class="btn">Lanjut</button>
+            <button type="reset" name="batal" class="btn">Reset</button>
+        </div>
+    </form>
 </body>
+
 </html>
