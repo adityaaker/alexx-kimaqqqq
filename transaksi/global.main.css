@@ -1,0 +1,255 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Body dan background */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f4f4f4; /* Warna fallback */
+    background-image: url('https://source.unsplash.com/random/1600x900');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: 100px auto 50px;
+    height: 100vh;
+}
+
+/* Header */
+#header {
+    background-color: #4a99b9; /* Hijau terang */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+#footer {
+     background-color: #4a99b9 ; /* #67C6E3 */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Konten utama */
+#content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+#menu, #main-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: auto;
+}
+
+/* Container untuk halaman menu */
+.container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Judul utama halaman menu */
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Menu sections */
+.menu-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Links dalam menu */
+.menu-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.menu-link {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #67C6E3; /* Hijau terang */
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-link:hover {
+    background-color: #378CE7;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #67C6E3; /* Hijau terang */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #DFF5FF; /* Hijau terang */
+}
+
+.btn, .menu-link {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Tombol */
+.btn {
+    padding: 10px 15px;
+    background-color: #67C6E3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #378CE7;
+}
+
+.logout {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f44336; /* Merah */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logout .btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Form input */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    min-height: 40px;
+}
+
+input:focus, textarea:focus {
+    border-color: #67C6E3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(103, 198, 227, 0.6); /* Lebih halus */
+}
+
+
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    body {
+        grid-template-rows: 80px auto 50px;
+    }
+
+    #content {
+        grid-template-columns: 1fr;
+    }
+
+    #header {
+        font-size: 20px;
+    }
+
+    .menu-links {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    #content {
+        padding: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    #header {
+        font-size: 18px;
+    }
+
+    .menu-link {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
