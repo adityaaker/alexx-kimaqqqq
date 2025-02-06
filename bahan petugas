@@ -1,0 +1,12 @@
+<a class="nav-link" href="?page=daftar_pelanggan" 
+   <?php if ($_SESSION['user']['level'] == 'petugas') echo 'style="display:none"'; ?>>
+    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+    Pelanggan
+</a>
+
+
+<a class="nav-link" href="?page=form_penjualan" 
+   <?php if ($_SESSION['user']['level'] == 'admin') echo 'style="display:none"'; ?>>
+    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+    penjualan
+</a>

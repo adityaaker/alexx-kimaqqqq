@@ -28,7 +28,7 @@
         <input type="date" name="tgl_penjualan" value="<?php echo date('Y-m-d'); ?>">
 
         <label for="total_harga">Total Harga</label>
-        <input type="number" name="total_harga" value="0" required>
+        <input type="number" name="total_harga" value="0" required readonly>
 
 
         <label for="id_pelanggan">ID Pelanggan</label>

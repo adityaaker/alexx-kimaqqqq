@@ -115,6 +115,20 @@
         .btn-add:hover {
             background-color: #218838;
         }
+
+        .btn-cetak {
+            background-color: #17a2b8;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-cetak:hover {
+            background-color: #138496;
+        }
     </style>
 </head>
 <body>
@@ -141,16 +155,18 @@
                 <th>NAMA PELANGGAN</th>
                 <th>EDIT</th>
                 <th>HAPUS</th>
+                <th>CETAK</th> <!-- Tambahan kolom untuk cetak -->
             </tr>
             <?php
             while ($baris = mysqli_fetch_array($sql_penjualan)) {
                 echo "<tr>
                     <td>{$baris['id_penjualan']}</td>
                     <td>{$baris['tanggal_penjualan']}</td>
-                    <td>{$baris['total_harga']}</td>
+                    <td>Rp " . number_format($baris['total_harga'], 0, ',', '.') . "</td>
                     <td>{$baris['nama_pelanggan']}</td>
                     <td><a href='edit_penjualan.php?id_penjualan={$baris['id_penjualan']}'>Edit</a></td>
                     <td><a href='hapus_penjualan.php?id_penjualan={$baris['id_penjualan']}' onclick='return confirm(\"Apakah anda ingin menghapus data penjualan {$baris['id_penjualan']} ?\")'>Hapus</a></td>
+                    <td><a href='exe_penjualan.php?id_penjualan={$baris['id_penjualan']}' target='_blank' class='btn-cetak'>Cetak</a></td>
                 </tr>";
             }
             ?>

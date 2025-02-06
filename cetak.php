@@ -152,7 +152,7 @@ if (isset($_POST['cetak'])) {
 
     <table class="footer-table">
         <tr>
-            <td>Bantul, ........ / ........ / 202...</td>
+            <td>Bantul, <?php echo date("d-m-Y"); ?></td>
         </tr>
         <tr>
             <td height="50">Petugas Toko</td>
@@ -162,8 +162,13 @@ if (isset($_POST['cetak'])) {
         </tr>
     </table>
 
-    <script>
+    <script>// Redirect ke index.php setelah 2 detik
         window.print();
+        setTimeout(function() {
+            window.location.href = 'index.php'; // Redirect ke index.php setelah 2 detik
+        }, 2000);
+
+
     </script>
 
 </body>

@@ -14,6 +14,9 @@ if (isset($_POST['tambah'])) {
     // Memasukkan data ke tabel penjualan
     $sql_penjualan = mysqli_query($koneksi, "INSERT INTO penjualan (tanggal_penjualan, total_harga, id_pelanggan, bayar, sisa_bayar) 
     VALUES ('$tgl', '$harga', '$idpelanggan', '0', '0')");
+
+    // Ambil ID terbaru jika menggunakan AUTO_INCREMENT
+    $id = mysqli_insert_id($koneksi);
 }
 
 // Mengambil data penjualan dan pelanggan dengan INNER JOIN
@@ -28,4 +31,8 @@ $ShowPayment = mysqli_fetch_array($sql_jual);
 $_SESSION['user'] = $ShowPayment;
 
 include "detail_penjualan.php";
+
+// Pengalihan ke index.php setelah proses selesai
+//header("Location: index.php");
+//exit();
 ?>

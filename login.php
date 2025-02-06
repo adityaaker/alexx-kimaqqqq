@@ -9,7 +9,13 @@ if(isset($_POST['username'])){
 
     if(mysqli_num_rows($cek) > 0) {
         $data = mysqli_fetch_array(($cek));
-        $_SESSION['user'] = $data;
+        $_SESSION['user'] = [
+            'username' => $data['username'], 
+            'nama' => $data['nama'], 
+            'level' => $data['level'] // pastikan kolom level ada di tabel user
+        ];
+        
+        
 
     echo '<script>alert("Login sukses!"); location.href="index.php"</script>';
     }else{
@@ -57,9 +63,9 @@ if(isset($_POST['username'])){
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="card-footer text-center py-3">
+                                    <!-- <div class="card-footer text-center py-3">
                                         <div class="small"><a href="register.php">Belum Punya Akun? Register!</a></div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

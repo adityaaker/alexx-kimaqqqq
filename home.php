@@ -31,14 +31,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card" style="background-color:rgb(160, 77, 255); color: #ffffff; margin-bottom: 1rem;"> <!-- Merah terang -->
-                <div class="card-body"><?php echo mysqli_num_rows(mysqli_query($koneksi, "select*from detail_penjualan")); ?> Total Pelanggan</div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    
-                </div>
-            </div>
-        </div>
+    
+            
+        
         <!-- Total User -->
         <div class="col-xl-3 col-md-6">
             <div class="card" style="background-color: #4d4dff; color: #ffffff; margin-bottom: 1rem;"> <!-- Biru terang -->
