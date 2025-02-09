@@ -61,10 +61,11 @@ if (!isset($_SESSION['user'] )) {
                                 Produk/Barang
 </a>
 <a class="nav-link" href="?page=form_penjualan" 
-   <?php if ($_SESSION['user']['level'] == 'admin') echo 'style="display:none"'; ?>>
+   <?php if (isset($_SESSION['user']['level']) && $_SESSION['user']['level'] == 'admin') echo 'style="display:none"'; ?>>
     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-    penjualan
+    Penjualan
 </a>
+
                             <!-- <a class="nav-link" href="?page=daftar_detail_penjualan">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Detail Penjualan
